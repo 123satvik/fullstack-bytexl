@@ -1,31 +1,18 @@
-import { useState } from 'react'
+import { useRef } from "react";
 
 function App() {
-  const [food, setFood] = useState(['Pasta','Pizza','Burger','Idli','Vadapav']);
-function AddFoodItem(event){
-  const newItem=document.getElementById('foodItem').value
-  document.getElementById('foodItem').value="";
-  // setFood([...food,newItem]);
-  setFood(f=>[...f,newItem]);
-}
-function RemoveFoodItem(index){
-  setFood(food.filter((_,i)=>i!==index));
-}
+  const inputr = useRef(null);
+
+  const HandlerInput = () => {
+    inputr.current.focus();
+  };
+
   return (
-    <>
-      <div>
-      <h2>Food List</h2>
-      <ul>
-        {food.map((item, index) => (
-          <li key={index} onClick={()=>RemoveFoodItem(index)}>{item}</li>
-        ))}
-      </ul>
-      <input id='foodItem'></input>
-      <button onClick={AddFoodItem}>Add Item</button>
-        </div>
-      
-    </>
-  )
+    <div>
+      <input type="text" ref={inputr}></input>
+      <button onClick={HandlerInput}>focus</button>
+    </div>
+  );
 }
 
-export default App
+export default App;
