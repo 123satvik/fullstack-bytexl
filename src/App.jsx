@@ -1,17 +1,25 @@
-import { useRef } from "react";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+import Home from './Home';
+import About from './About';
+import Contact from './Contact';
 
 function App() {
-  const inputr = useRef(null);
-
-  const HandlerInput = () => {
-    inputr.current.focus();
-  };
-
   return (
-    <div>
-      <input type="text" ref={inputr}></input>
-      <button onClick={HandlerInput}>focus</button>
-    </div>
+    <Router>
+      <nav style={{ marginBottom: '20px' }}>
+        <Link to="/">Home</Link> |{" "}
+        <Link to="/about">About</Link> |{" "}
+        <Link to="/contact">Contact</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
   );
 }
 
