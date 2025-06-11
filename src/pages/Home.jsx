@@ -1,13 +1,20 @@
-function Home() {
-    return (
-      <div>
-        <h1 className="text-3xl font-bold mb-4">Welcome to the Home Page</h1>
-        <p className="text-lg text-gray-700">
-          This is a sample website created using React Router. Use the navigation bar to explore more.
-        </p>
-      </div>
-    );
-  }
-  
-  export default Home;
-  
+import React from 'react';
+import { cars } from '../data/cars';
+import CarCard from '../components/CarCard';
+
+export default function Home() {
+  const gridStyle = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '1rem',
+    padding: '1rem'
+  };
+
+  return (
+    <div style={gridStyle}>
+      {cars.map(car => (
+        <CarCard key={car.id} car={car} />
+      ))}
+    </div>
+  );
+}
